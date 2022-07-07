@@ -41,29 +41,11 @@ li {
   line-height: 43.2px;
 }
 
-ol li:nth-child(2n) {
-  border-top: none;
-}
-
 .list-item {
   position: relative;
   padding: 30px 30px 30px 0;
   cursor: pointer;
-  font-size: 36px;
   border-bottom: 1px solid #E6E6E6;
-}
-
-.list-item:first-child {
-  border-top: 1px solid #E6E6E6;
-}
-
-.list-item:hover {
-  color: #02818A;
-  transition: color 0.3s linear;
-}
-
-.list-item.active {
-  color: #02818A;
 }
 
 .list-item:after {
@@ -81,29 +63,48 @@ ol li:nth-child(2n) {
   background-repeat: no-repeat;
 }
 
+.list-item:first-child {
+  border-top: 1px solid #E6E6E6;
+}
+
+.list-item:hover {
+  color: #02818A;
+  transition: color 0.3s linear;
+}
+
+.list-item.active {
+  color: #02818A;
+}
+
+.list-item.active:before,
+.list-item.active:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 42px;
+  width: 22px;
+  height: 2px;
+  background: #02818A;
+}
+
+.list-item.active:before {
+  transform: rotate(45deg);
+}
+
+.list-item.active:after {
+  transform: rotate(-45deg);
+}
+
 .list-item__spoiler {
+  display: none;
   margin: 30px 0 10px 0;
   max-width: 942px;
   font-size: 20px;
-  color: #012B34;
   line-height: 30px;
+  color: #012B34;
   cursor: initial;
 }
 
-.list__panel {
-  list-style-type: none;
-  padding: 30px 0 40px;
-  font-size: 20px;
-  line-height: 30px;
-  color: #000402;
-  display: none;
-  overflow: hidden;
-  border-bottom: 1px solid #E6E6E6;
-}
-
-/* .list__panel:last-child {
-  border-bottom: 1px solid #E6E6E6;
-} */
 
 @media (max-width: 1440px) {
   .container {
@@ -112,10 +113,10 @@ ol li:nth-child(2n) {
     margin: 0 120px;
   }
 
-  .tiltle {
+  .title {
     font-size: 48px;
     line-height: 48px;
-    padding-bottom: 60px;
+    margin-bottom: 60px;
   }
 
   .list {
@@ -123,14 +124,26 @@ ol li:nth-child(2n) {
     line-height: 32.4px;
   }
 
-  .list__item {
-    padding: 24px 0;
+  .list-item {
+    padding: 24px 20px 20px 0;
   }
 
-  .list__icon {
+  .list-item:after {
     width: 14.16px;
     height: 14.13px;
     top: 33px;
+  }
+
+  .list-item__spoiler {
+    max-width: 840px;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 22.5px;
+  }
+
+  .list-item.active:before,
+  .list-item.active:after {
+    width: 16px;
   }
 }
 
@@ -141,10 +154,10 @@ ol li:nth-child(2n) {
     margin: 0 107px;
   }
 
-  .tiltle {
+  .title {
     font-size: 42px;
     line-height: 42px;
-    padding-bottom: 56px;
+    margin-bottom: 56px;
   }
 
   .list {
@@ -152,24 +165,37 @@ ol li:nth-child(2n) {
     line-height: 38.8px;
   }
 
-  .list__item {
-    padding: 20px 0;
+  .list-item {
+    padding: 20px 20px 20px 0;
   }
 
-  .list__icon {
-    top: 32px;
+  .list-item:after {
+    top: 28px;
+  }
+
+  .list-item__spoiler {
+    max-width: 640px;
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .list-item.active:before,
+  .list-item.active:after {
+    width: 16px;
+    top: 35px;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    max-width: 768px;
+    max-width: 768;
     padding: 60px 0 327px;
     margin: 0 40px;
   }
 
-  .tiltle {
-    padding-bottom: 50px;
+  .title {
+    margin-bottom: 50px;
   }
 
   .list {
@@ -177,14 +203,14 @@ ol li:nth-child(2n) {
     line-height: 32.4px;
   }
 
-  .list__item {
-    padding: 24px 0;
+  .list-item {
+    padding: 24px 24px 24px 0;
   }
 
-  .list__icon {
-    width: 20px;
-    height: 20px;
-    top: 33px;
+  .list-item__spoiler {
+    max-width: 612px;
+    font-size: 15px;
+    line-height: 22.5px;
   }
 }
 
@@ -195,11 +221,11 @@ ol li:nth-child(2n) {
     margin: 0 24px;
   }
 
-  .tiltle {
+  .title {
     font-size: 30px;
     line-height: 30px;
-    width: 190px;
-    padding-bottom: 40px;
+    max-width: 190px;
+    margin-bottom: 40px;
   }
 
   .list {
@@ -207,13 +233,14 @@ ol li:nth-child(2n) {
     line-height: 28.8px;
   }
 
-  .list__item {
-    padding: 20px 0;
+  .list-item {
+    padding: 20px 20px 20px 0;
   }
 
-  .list__icon {
-    width: 16px;
-    height: 16px;
-    top: 33px;
+  .list-item__spoiler {
+    max-width: 327px;
+    margin: 16px 0 0 0;
+    font-size: 14px;
+    line-height: 21px;
   }
 }
